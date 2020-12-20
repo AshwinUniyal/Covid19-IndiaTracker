@@ -11,5 +11,5 @@ This is a Live web-app that shows Covid-19 related stats within Indian Territory
 
 >Total Deaths 
 
-* Situation of Covid in every Indian States, UTs.
+* Situation and stats of Covid-19 in every Indian States, UTs in tabular form
 
