@@ -10,10 +10,10 @@ $(document).ready(function() {
 
   $.get("https://api.rootnet.in/covid19-in/stats/latest", function(response) {
 
-    const totalCases = response.statewise[0].confirmed;
-    const activeCases = response.statewise[0].active;
-    const recovered = response.statewise[0].recovered;
-    const deaths = response.statewise[0].deaths;
+    const totalCases = response.regional[0].confirmed;
+    const activeCases = response.regional[0].active;
+    const recovered = response.regional[0].recovered;
+    const deaths = response.regional[0].deaths;
 
     $(".confirmed").text(totalCases);
     $(".activeCases").text(activeCases);
@@ -25,11 +25,11 @@ $(document).ready(function() {
 
     for(var i = 1; i < response.statewise.length; i++){
             $("table").append(`<tr>
-               <th >${response.statewise[i].state}</th>
-               <td >${response.statewise[i].confirmed}</td>
-               <td >${response.statewise[i].active}</td>
-               <td >${response.statewise[i].recovered}</td>
-               <td >${response.statewise[i].deaths}</td>
+               <th >${response.regional[i].state}</th>
+               <td >${response.regional[i].confirmed}</td>
+               <td >${response.regional[i].active}</td>
+               <td >${response.regional[i].recovered}</td>
+               <td >${response.regional[i].deaths}</td>
              </tr>`);
         }
     ///////////PIE CHART////////////
