@@ -10,10 +10,10 @@ $(document).ready(function() {
 
   $.get("https://api.rootnet.in/covid19-in/stats/latest", function(response) {
 
-    const totalCases = response.regional[0].confirmed;
-    const activeCases = response.regional[0].active;
-    const recovered = response.regional[0].recovered;
-    const deaths = response.regional[0].deaths;
+    const totalCases = response.data.summary.total;
+    const activeCases = (response.data.summary.total-response.data.summary.discharged);
+    const recovered = response.data.summary.discharged;
+    const deaths = response.data.summary.deaths;
 
     $(".confirmed").text(totalCases);
     $(".activeCases").text(activeCases);
@@ -23,13 +23,13 @@ $(document).ready(function() {
 ///////////////////TABLE/////////////
 
 
-    for(var i = 1; i < response.statewise.length; i++){
+    for(var i = 1; i < response.data.regional.length; i++){
             $("table").append(`<tr>
-               <th >${response.regional[i].state}</th>
-               <td >${response.regional[i].confirmed}</td>
-               <td >${response.regional[i].active}</td>
-               <td >${response.regional[i].recovered}</td>
-               <td >${response.regional[i].deaths}</td>
+              <th >${response.data.regional[i].loc}</th>
+               <td >${response.data.regional[i].totalConfirmed}</td>
+               <td >${response.data.regional[i].totalConfirmed-response.data.regional[i].discharged}</td>
+               <td >${response.data.regional[i].discharged}</td>
+               <td >${response.data.regional[i].deaths}</td>
              </tr>`);
         }
     ///////////PIE CHART////////////
@@ -51,20 +51,20 @@ chart.innerRadius = am4core.percent(40);
     chart.data = [
       {
         "case": "Confirmed Cases",
-        "figures": response.statewise[0].confirmed
+        "figures": response.data.summary.total
 
       },
       {
         "case" : "Active Cases",
-        "figures": response.statewise[0].active
+        "figures": response.data.summary.total-response.data.summary.discharged
       },
       {
         "case": "Recovered Patients",
-        "figures": response.statewise[0].recovered
+        "figures": response.data.summary.discharged
       },
       {
         "case": "Deaths",
-        "figures": response.statewise[0].deaths
+        "figures": response.data.summary.deaths
       }
     ];
 
@@ -87,3 +87,4 @@ pieSeries.slices.template.propertyFields.fill = "color";
 
 
 });
+
