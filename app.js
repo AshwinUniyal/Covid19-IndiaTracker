@@ -8,7 +8,7 @@ $(document).ready(function() {
   //    sessionStorage.setItem('alerted','yes');
   //   }
 
-  $.get("https://api.covid19india.org/data.json", function(response) {
+  $.get("https://ashwinuniyal.github.io/Covid19-IndiaTracker/", function(response) {
 
     const totalCases = response.statewise[0].confirmed;
     const activeCases = response.statewise[0].active;
