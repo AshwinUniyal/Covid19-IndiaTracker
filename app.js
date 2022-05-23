@@ -49,11 +49,7 @@ chart.innerRadius = am4core.percent(40);
     chart.legend = new am4charts.Legend();
 
     chart.data = [
-      {
-        "case": "Confirmed Cases",
-        "figures": response.data.summary.total
-
-      },
+     
       {
         "case" : "Active Cases",
         "figures": response.data.summary.total-response.data.summary.discharged
